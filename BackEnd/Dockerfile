@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
 
 COPY . . 
@@ -12,9 +12,9 @@ RUN dotnet restore "app/WebApi/WebApi.csproj"
 COPY . ./
 RUN dotnet publish -c Release -o output
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app
 EXPOSE 80
 COPY --from=build /app/output /app
 
-ENTRYPOINT [ "dotnet", "WebApi.dll" ]
+ENTRYPOINT [ "dotnet", "WebApi.dll" , "--environment=Development" ]
