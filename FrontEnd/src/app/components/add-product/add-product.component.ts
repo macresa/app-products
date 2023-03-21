@@ -31,7 +31,7 @@ import { applicationService } from 'src/app/services/application.service';
 
   openSnackBar() {
 
-    this._snackBar.open('Producto creado!', 'Cerrar', {
+    this._snackBar.open('The product was added successfully!', 'Close', {
       horizontalPosition: 'right',
       duration: 3000
     });
