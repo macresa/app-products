@@ -14,27 +14,17 @@
         </mat-form-field>
       </mat-grid-tile>
 
-         <!-- <mat-grid-tile>
-        <mat-form-field appearance="outline">
-          <mat-label>Category</mat-label>
-          <mat-select formControlName="categoria">
-            <mat-option *ngFor="let cat of listcategoria" value="{{ cat.id}}">
-              {{cat.nombre}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-    </mat-grid-tile> -->
+    <mat-grid-tile>
+    <mat-form-field appearance="outline" floatLabel=always>
+      <mat-label>Category</mat-label>
+      <mat-select placeholder="{{selectedcat}}" formControlName="categoria">         
+        <mat-option *ngFor="let cat of listcategory" value="{{ cat.id}}">
+          {{cat.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
 
-             <mat-grid-tile>
-        <mat-form-field appearance="outline">
-          <mat-label>Category</mat-label>
-          <mat-select formControlName="categoria" [(value)]="selected" [(ngModel)]="selected">
-            <mat-option *ngFor="let cat of listcategory" value="{{ cat.id}}">
-              {{cat.nombre}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-    </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field appearance="outline">
           <mat-label>Brand</mat-label>

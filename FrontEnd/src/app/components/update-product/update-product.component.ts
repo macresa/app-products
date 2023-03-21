@@ -14,9 +14,7 @@ export class UpdateProductComponent implements OnInit {
  form: FormGroup;
   listcategory: Array<any> = []
   id_: number;
-  selected: string = ''
-
-
+  selectedcat: String = '';
 
   constructor(private fb: FormBuilder, private _service:applicationService, private _snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute) { 
@@ -39,7 +37,7 @@ export class UpdateProductComponent implements OnInit {
 
   openSnackBar() {
 
-    this._snackBar.open('Producto actualizado!', 'Cerrar', {
+    this._snackBar.open('The product was updated successfully!', 'Close', {
       horizontalPosition: 'right',
       duration: 3000
     });
@@ -53,14 +51,14 @@ export class UpdateProductComponent implements OnInit {
         nombre: data.name,
         marca: data.brand,
         descripcion: data.description,
-        categoria: data.categoryName,
+        categoria: data.categoryId,
+        categorianombre: data.categoryName,
         precio: data.price
-        })   
-       this.selected = data.description;
+        });   
+        this.selectedcat = data.categoryName!;
     })
 
      }
-
 
   updateProduct () {
     if(this.form.valid){
@@ -69,11 +67,10 @@ export class UpdateProductComponent implements OnInit {
         brand: this.form.value.marca,
         description: this.form.value.descripcion,
         categoryId: this.form.value.categoria,
-        price: this.form.value.precio  
+        price: this.form.value.precio 
       }
     this._service.updateProduct(producto, this.id_).subscribe(data => console.log(data));
     this.openSnackBar();
-    //this.form.reset();
     }
   }
 
