@@ -4,6 +4,8 @@ dist
 
 .editorconfig
 
+.dockerignore 
+
 .gitignore
 
 *.md

@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   webapi:
-    image: containercm.azurecr.io/webapi
+    image: containercm.azurecr.io/appproduct/webapi
     build:
       context: ./BackEnd
       dockerfile: Dockerfile
@@ -10,9 +10,9 @@ services:
     depends_on:
       - frontend
   frontend:
-    image: containercm.azurecr.io/frontend
+    image: containercm.azurecr.io/appproduct/frontend
     build:
       context: ./FrontEnd
       dockerfile: Dockerfile
     ports:
-      - "4200:80"
+        - "4200:80"
