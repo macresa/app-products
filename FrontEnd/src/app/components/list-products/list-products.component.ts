@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/interfaces/product';
 import { applicationService } from 'src/app/services/application.service';
 
@@ -18,7 +19,7 @@ export class ListProductsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
-  constructor(private _service:applicationService) { }
+  constructor(private _service:applicationService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -27,9 +28,24 @@ export class ListProductsComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
   getProducts(){
- this._service.getProducts().subscribe(data =>{
-  this.dataSource.data = data;
- })
+    this._service.getProducts().subscribe(data =>{
+     this.dataSource.data = data;
+    })
   }
+
+  openSnackBar() {
+    this._snackBar.open('The product was removed successfully!', 'Close', {
+      horizontalPosition: 'right',
+      duration: 3000
+    });
+  }
+
+  deleteProduct(id: number){
+    this._service.deleteProduct(id).subscribe(() => {
+      this.openSnackBar();
+      this.getProducts();
+    });
+    
+     }
 
 }

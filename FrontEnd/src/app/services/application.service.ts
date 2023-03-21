@@ -33,4 +33,7 @@ private apiC: string = 'api/categories/';
    updateProduct(producto: Product, id: number): Observable<void> {
     return this.http.put<void>(`${this.appUrl}${this.apiP}${id}`, producto);
   }
+   deleteProduct(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.appUrl}${this.apiP}${id}`);
+  }
 }
